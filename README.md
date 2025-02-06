@@ -1,4 +1,4 @@
-# Movie-recommendation-System
+# Movie-Recommendation-System
 Movie Recomendation System 
 ## Overview
 This project is a Movie Recommendation System that suggests movies to users based on their preferences and viewing history. It uses collaborative filtering and content-based filtering techniques to provide personalized recommendations.
