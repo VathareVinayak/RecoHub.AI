@@ -310,7 +310,7 @@ st.title('🎬 Movie Recommendation System')
 selected_movie = st.selectbox('Select a movie:', movies['title'].values)
 
 # "Recommend" button
-if st.button('Recommend'):
+if st.button('Recommend', key="movie_recommend"):
     recommended_movies, recommended_posters = recommend(selected_movie)
     
     if recommended_movies:

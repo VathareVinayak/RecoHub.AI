@@ -67,7 +67,7 @@ st.title('Music Recommendation System')  # Set title of the web app
 selected_music = st.selectbox('Select a music', music['title'].values)
 
 # Button to generate recommendations
-if st.button('Recommend'):
+if st.button('Recommend', key="music_recommend"):
     names, posters = recommend(selected_music)
     
     # Debugging: Print fetched posters

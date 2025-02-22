@@ -40,7 +40,7 @@ def recommend_podcasts(language, selected_tags):
     return filtered_podcasts.head(5)  # Return top 5 results
 
 # Button to get recommendations
-if st.button("Recommend"):
+if st.button('Recommend', key="podcast_recommend"):
     recommended_podcasts = recommend_podcasts(selected_language, selected_tags)
     
     if recommended_podcasts.empty:
