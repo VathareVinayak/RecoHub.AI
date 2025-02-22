@@ -1,55 +1,299 @@
-import pickle  # Pickle for loading models
-import streamlit as st  # Streamlit for UI
-import pandas as pd  # Pandas for data handling
-import numpy as np  # NumPy for numerical operations
-import joblib  # Joblib for loading models
-import requests  # Requests for API calls
-import gdown  # gdown to fetch from Google Drive
+# import pickle  # Pickle for loading models
+# import streamlit as st  # Streamlit for UI
+# import pandas as pd  # Pandas for data handling
+# import numpy as np  # NumPy for numerical operations
+# import joblib  # Joblib for loading models
+# import requests  # Requests for API calls
+# import gdown  # gdown to fetch from Google Drive
+# import os
+# from dotenv import load_dotenv
+
+# # Load environment variables from .env file
+# load_dotenv()
+
+# # Retrieve the OMDB API key securely
+# OMDB_API_KEY = os.getenv("OMDB_API_KEY")
+
+
+# def fetch_poster(movie_title):
+#     """
+#     Fetches the movie poster URL from the OMDb API.
+#     If no valid image is found, returns a placeholder image.
+#     """
+#     url = f"http://www.omdbapi.com/?t={movie_title}&apikey={OMDB_API_KEY}"
+    
+#     try:
+#         response = requests.get(url)
+#         data = response.json()
+        
+#         # Check if the response contains a valid poster
+#         if data.get("Poster") and data["Poster"] != "N/A":
+#             return data["Poster"]
+#     except Exception as e:
+#         print(f"Error fetching poster for {movie_title}: {e}")
+    
+#     # Return a default placeholder image if API request fails
+#     return "https://via.placeholder.com/500"
+
+
+# def recommend(movie_title):
+#     """
+#     Recommends similar movies based on the given movie title using a similarity matrix.
+#     Returns lists of recommended movie names and their corresponding poster URLs.
+#     """
+#     try:
+#         # Locate the index of the selected movie
+#         movie_index = movies[movies['title'] == movie_title].index[0]
+#         distances = similarity[movie_index]  # Fetch similarity scores
+        
+#         # Retrieve top 15 most similar movies (excluding the selected movie itself)
+#         recommended_indices = sorted(list(enumerate(distances)), key=lambda x: x[1], reverse=True)[1:16]
+        
+#         # Extract recommended movie titles and their posters
+#         recommended_movies = [movies.iloc[i[0]].title for i in recommended_indices]
+#         recommended_posters = [fetch_poster(movies.iloc[i[0]].title) for i in recommended_indices]
+        
+#         return recommended_movies, recommended_posters
+
+#     except Exception as e:
+#         print(f"Error in recommendation for {movie_title}: {e}")
+#         return [], []
+
+
+# # Load the pre-trained recommendation model and similarity matrix
+# movie_dict = pickle.load(open(r"J:\#Recommendation-System\Models\movie_rec_model.pkl", "rb"))
+# movies = pd.DataFrame(movie_dict)  # Convert loaded dictionary to DataFrame
+
+# similarity = np.load(r"J:\#Recommendation-System\Models\movie_recommendation_model.pkl", allow_pickle=True)
+
+# # Streamlit UI
+# st.title('🎬 Movie Recommendation System')
+
+# # Dropdown menu for movie selection
+# selected_movie = st.selectbox('Select a movie:', movies['title'].values)
+
+# # When the "Recommend" button is clicked
+# if st.button('Recommend'):
+#     recommended_movies, recommended_posters = recommend(selected_movie)
+    
+#     if recommended_movies:
+#         # Organize recommended movies into three columns
+#         cols = st.columns(3)
+
+#         # Display recommendations in a structured format
+#         for idx, (movie_name, movie_poster) in enumerate(zip(recommended_movies, recommended_posters)):
+#             with cols[idx % 3]:  # Distribute movies evenly across columns
+#                 st.image(movie_poster, width=150)
+#                 st.caption(movie_name)
+#     else:
+#         st.error("No recommendations found. Try selecting another movie.")
+
+
+
+
+
+# import streamlit as st  # Streamlit for UI
+# import pandas as pd  # Pandas for data handling
+# import numpy as np  # NumPy for numerical operations
+# import joblib  # Joblib for loading models
+# import requests  # Requests for API calls
+# import zipfile  # Zipfile for handling compressed files
+# import os
+# from dotenv import load_dotenv
+
+# # Load environment variables from .env file
+# load_dotenv()
+
+# # Retrieve the OMDb API key securely
+# OMDB_API_KEY = os.getenv("OMDB_API_KEY")
+
+# def fetch_poster(movie_title):
+#     """
+#     Fetches the movie poster URL from the OMDb API.
+#     If no valid image is found, returns a placeholder image.
+#     """
+#     if not OMDB_API_KEY:
+#         return "https://via.placeholder.com/500"  # Placeholder if API key is missing
+    
+#     url = f"http://www.omdbapi.com/?t={movie_title}&apikey={OMDB_API_KEY}"
+    
+#     try:
+#         response = requests.get(url)
+#         data = response.json()
+        
+#         # Check if the response contains a valid poster
+#         if data.get("Poster") and data["Poster"] != "N/A":
+#             return data["Poster"]
+#     except Exception as e:
+#         print(f"Error fetching poster for {movie_title}: {e}")
+    
+#     return "https://via.placeholder.com/500"  # Default placeholder image
+
+# def recommend(movie_title):
+#     """
+#     Recommends similar movies based on the given movie title using a similarity matrix.
+#     Returns lists of recommended movie names and their corresponding poster URLs.
+#     """
+#     try:
+#         # Locate the index of the selected movie
+#         movie_index = movies[movies['title'] == movie_title].index[0]
+#         distances = similarity[movie_index]  # Fetch similarity scores
+        
+#         # Retrieve top 15 most similar movies (excluding the selected movie itself)
+#         recommended_indices = sorted(list(enumerate(distances)), key=lambda x: x[1], reverse=True)[1:16]
+        
+#         # Extract recommended movie titles and their posters
+#         recommended_movies = [movies.iloc[i[0]].title for i in recommended_indices]
+#         recommended_posters = [fetch_poster(movies.iloc[i[0]].title) for i in recommended_indices]
+        
+#         return recommended_movies, recommended_posters
+
+#     except Exception as e:
+#         print(f"Error in recommendation for {movie_title}: {e}")
+#         return [], []
+# import zipfile
+# import os
+# import joblib
+
+
+# # Define paths
+# zip_path = r"J:\#Recommendation-System\utils\movie_recommendation_model.zip"
+# extract_to = r"J:\#Recommendation-System\utils"
+# joblib_file = os.path.join(extract_to, "movie_recommendation_model.joblib")
+
+# # 📌 Step 1: Extract if not already extracted
+# if not os.path.exists(joblib_file):  # Only extract if missing
+#     if os.path.exists(zip_path):
+#         with zipfile.ZipFile(zip_path, "r") as zip_ref:
+#             zip_ref.extractall(extract_to)  # Extract files
+#             print(f"✅ Extracted files to: {extract_to}")
+#     else:
+#         print(f"❌ ZIP file not found at: {zip_path}")
+
+# # 📌 Step 2: Ensure the joblib file exists before loading
+# if os.path.exists(joblib_file):
+#     similarity = joblib.load(joblib_file)
+#     print("✅ Model loaded successfully!")
+# else:
+#     print(f"❌ Model file not found at: {joblib_file}")
+
+
+# # 📌 Load the pre-trained recommendation model
+# movie_dict = joblib.load(r"J:\#Recommendation-System\utils\movie_rec_model.joblib")
+
+# movies = pd.DataFrame(movie_dict)  # Convert loaded dictionary to DataFrame
+
+# # 📌 Load similarity matrix
+# similarity = joblib.load("movie_recommendation_model.joblib")
+
+# # Streamlit UI
+# st.title('🎬 Movie Recommendation System')
+
+# # Dropdown menu for movie selection
+# selected_movie = st.selectbox('Select a movie:', movies['title'].values)
+
+# # When the "Recommend" button is clicked
+# if st.button('Recommend'):
+#     recommended_movies, recommended_posters = recommend(selected_movie)
+    
+#     if recommended_movies:
+#         # Organize recommended movies into three columns
+#         cols = st.columns(3)
+
+#         # Display recommendations in a structured format
+#         for idx, (movie_name, movie_poster) in enumerate(zip(recommended_movies, recommended_posters)):
+#             with cols[idx % 3]:  # Distribute movies evenly across columns
+#                 st.image(movie_poster, width=150)
+#                 st.caption(movie_name)
+#     else:
+#         st.error("No recommendations found. Try selecting another movie.")
+
+
+
+import streamlit as st  
+import pandas as pd  
+import numpy as np  
+import joblib  
+import requests  
+import gdown  
+import bz2  
 import os
 from dotenv import load_dotenv
 
-# Load environment variables from .env file
+# 🔹 Load environment variables from .env file
 load_dotenv()
 
-# Retrieve the OMDB API key securely
-OMDB_API_KEY = os.getenv("OMDB_API_KEY")
+# 🔹 Retrieve API key and Google Drive File ID
+OMDB_API_KEY = os.getenv("OMDB_API_KEY")  
+GDRIVE_SIMILARITY_ID = os.getenv("GDRIVE_SIMILARITY_ID")  # Only needed for large similarity file
 
+# 🔹 Define file paths
+movie_dict_file = "J:/#Recommendation-System/Models/movie_rec_model.joblib"  # Local file
+compressed_similarity_file = "movie_recommendation_model_compressed.joblib.bz2"
+similarity_model_file = "movie_recommendation_model.joblib"  # Extracted similarity matrix
 
+# ✅ Step 1: Download Similarity Model from Google Drive (If Missing)
+def download_similarity_model():
+    """Downloads the similarity model from Google Drive if not found."""
+    if not os.path.exists(compressed_similarity_file):
+        if GDRIVE_SIMILARITY_ID:
+            url = f"https://drive.google.com/uc?id={GDRIVE_SIMILARITY_ID}"
+            st.write(f"⏳ Downloading similarity model from Google Drive...")
+            gdown.download(url, compressed_similarity_file, quiet=False)
+            st.write(f"✅ Similarity model downloaded successfully!")
+        else:
+            st.error(f"❌ Google Drive File ID not found in .env.")
+            st.stop()
+
+download_similarity_model()  # Run download function if needed
+
+# ✅ Step 2: Decompress Similarity Model (If Needed)
+if not os.path.exists(similarity_model_file):  
+    st.write("⏳ Decompressing similarity model...")
+    with bz2.BZ2File(compressed_similarity_file, "rb") as f:
+        similarity = joblib.load(f)
+    joblib.dump(similarity, similarity_model_file)  # Save decompressed file
+    st.write("✅ Similarity model decompressed successfully!")
+else:
+    st.write("✅ Similarity model already decompressed, loading it directly.")
+    similarity = joblib.load(similarity_model_file)
+
+# ✅ Step 3: Load Movie Dictionary (Local File)
+try:
+    movie_dict = joblib.load(movie_dict_file)  # Load locally
+    movies = pd.DataFrame(movie_dict)  # Convert to DataFrame
+    st.write("✅ Movie dictionary loaded successfully!")
+except Exception as e:
+    st.error(f"❌ Error loading movie dictionary: {e}")
+    st.stop()
+
+# 📌 Function to Fetch Movie Poster
 def fetch_poster(movie_title):
-    """
-    Fetches the movie poster URL from the OMDb API.
-    If no valid image is found, returns a placeholder image.
-    """
+    """Fetches movie poster URL from OMDb API."""
+    if not OMDB_API_KEY:
+        return "https://via.placeholder.com/500"  # Default if API key is missing
+    
     url = f"http://www.omdbapi.com/?t={movie_title}&apikey={OMDB_API_KEY}"
     
     try:
         response = requests.get(url)
         data = response.json()
         
-        # Check if the response contains a valid poster
         if data.get("Poster") and data["Poster"] != "N/A":
             return data["Poster"]
     except Exception as e:
         print(f"Error fetching poster for {movie_title}: {e}")
     
-    # Return a default placeholder image if API request fails
-    return "https://via.placeholder.com/500"
+    return "https://via.placeholder.com/500"  # Default placeholder image
 
-
+# 📌 Function to Recommend Movies
 def recommend(movie_title):
-    """
-    Recommends similar movies based on the given movie title using a similarity matrix.
-    Returns lists of recommended movie names and their corresponding poster URLs.
-    """
+    """Recommends similar movies based on a given movie title."""
     try:
-        # Locate the index of the selected movie
         movie_index = movies[movies['title'] == movie_title].index[0]
-        distances = similarity[movie_index]  # Fetch similarity scores
+        distances = similarity[movie_index]
         
-        # Retrieve top 15 most similar movies (excluding the selected movie itself)
         recommended_indices = sorted(list(enumerate(distances)), key=lambda x: x[1], reverse=True)[1:16]
-        
-        # Extract recommended movie titles and their posters
         recommended_movies = [movies.iloc[i[0]].title for i in recommended_indices]
         recommended_posters = [fetch_poster(movies.iloc[i[0]].title) for i in recommended_indices]
         
@@ -59,30 +303,20 @@ def recommend(movie_title):
         print(f"Error in recommendation for {movie_title}: {e}")
         return [], []
 
-
-# Load the pre-trained recommendation model and similarity matrix
-movie_dict = pickle.load(open(r"J:\#Recommendation-System\Models\movie_rec_model.pkl", "rb"))
-movies = pd.DataFrame(movie_dict)  # Convert loaded dictionary to DataFrame
-
-similarity = np.load(r"J:\#Recommendation-System\Models\movie_recommendation_model.pkl", allow_pickle=True)
-
-# Streamlit UI
+# 📌 Streamlit UI
 st.title('🎬 Movie Recommendation System')
 
-# Dropdown menu for movie selection
+# Dropdown for movie selection
 selected_movie = st.selectbox('Select a movie:', movies['title'].values)
 
-# When the "Recommend" button is clicked
+# "Recommend" button
 if st.button('Recommend'):
     recommended_movies, recommended_posters = recommend(selected_movie)
     
     if recommended_movies:
-        # Organize recommended movies into three columns
         cols = st.columns(3)
-
-        # Display recommendations in a structured format
         for idx, (movie_name, movie_poster) in enumerate(zip(recommended_movies, recommended_posters)):
-            with cols[idx % 3]:  # Distribute movies evenly across columns
+            with cols[idx % 3]:
                 st.image(movie_poster, width=150)
                 st.caption(movie_name)
     else:
