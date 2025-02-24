@@ -6,25 +6,24 @@ import requests
 import os
 from dotenv import load_dotenv
 
-# 🔹 Load environment variables from .env file
+# Load environment variables from .env file
 load_dotenv()
-
-# 🔹 Retrieve API key
+# Retrieve API key
 OMDB_API_KEY = os.getenv("OMDB_API_KEY")  
 
-# 🔹 Define file paths
+# Define file paths
 movie_dict_file = "J:\#Recommendation-System\Models\movie_rec_model.joblib"  # Local file
 similarity_model_file = "J:\#Recommendation-System\Models\movie_recommendation_model.joblib"  # Local similarity model
 movie_data_path = "J:\#Recommendation-System\Systems\Movie_Recomendation_System\Movie-Recomendatation.csv"
 
-# ✅ Step 1: Load Similarity Model
+# Load Similarity Model
 try:
     similarity = joblib.load(similarity_model_file)  # Load locally
 except Exception as e:
     st.error(f"❌ Error loading similarity model: {e}")
     st.stop()
 
-# ✅ Step 2: Load Movie Dictionary (Local File)
+# Load Movie Dictionary (Local File)
 try:
     movie_dict = joblib.load(movie_dict_file)  # Load locally
     movies = pd.DataFrame(movie_dict)  # Convert to DataFrame
@@ -32,7 +31,7 @@ except Exception as e:
     st.error(f"❌ Error loading movie dictionary: {e}")
     st.stop()
 
-# ✅ Step 3: Load Top 4 Genres and Movies
+# Load Top 4 Genres and Movies
 
 def get_top_genres(movie_data_path):
     """Fetch top 4 genres with the most movies and return 5 movies per genre."""
@@ -55,7 +54,7 @@ def get_top_genres(movie_data_path):
 
 all_movies_by_genre = get_top_genres(movie_data_path)
 
-# 📌 Function to Fetch Movie Poster
+# Function to Fetch Movie Poster
 def fetch_poster(movie_title):
     """Fetches movie poster URL from OMDb API."""
     if not OMDB_API_KEY:
@@ -74,7 +73,7 @@ def fetch_poster(movie_title):
     
     return "https://via.placeholder.com/500"  # Default placeholder image
 
-# 📌 Function to Recommend Movies
+# Function to Recommend Movies
 def recommend(movie_title):
     """Recommends similar movies based on a given movie title."""
     try:
@@ -90,7 +89,7 @@ def recommend(movie_title):
         print(f"Error in recommendation for {movie_title}: {e}")
         return [], []
 
-# 📌 Streamlit UI
+# Streamlit UI
 st.title('🎬 Movie Recommendation System')
 
 # Create Tabs
