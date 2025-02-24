@@ -25,14 +25,15 @@ RecoHub.AI integrates **content-based filtering** and **vector similarity models
 ---
 
 ## 📌 Project Navigation  
+
 📂 **RecoHub.AI/**  
- ├── 📁 `images/` *(Screenshots and banners)* 
- ├── 📁 `models/` *(Trained ML models stored here)*  
- ├── 📁 `systems/` *(Processed datasets for movies, music, and podcasts)*  
- ├── 📁 `utils/` *(Main application logic & backend code)*  
- ├── 📄 `app.py` *(Streamlit UI for recommendations)*  
- ├── 📄 `requirements.txt` *(required libraries)*  
- ├── 📄 `README.md` *(This file!)*  
+│── 📁 `images/`            *(Screenshots and banners)*  
+│── 📁 `models/`            *(Trained ML models stored here)*  
+│── 📁 `systems/`           *(Processed datasets for movies, music, and podcasts)*  
+│── 📁 `utils/`             *(Main application logic & backend code)*  
+│── 📄 `app.py`             *(Streamlit UI for recommendations)*  
+│── 📄 `requirements.txt`   *(Required libraries)*  
+│── 📄 `README.md`          *(This file!)*  
 
 ---
 
