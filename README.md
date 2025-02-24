@@ -4,7 +4,7 @@
 
 ## 🎬🎵🎙️ AI-Based Entertainment Recommendation Suite  
 
-### Live Demo: [Click Here](#) *(Update with actual link)*
+### Live Demo: [Click Here](#) 
 
 ---
 
