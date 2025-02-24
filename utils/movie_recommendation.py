@@ -210,12 +210,14 @@
 
 
 
+
+
+
 import streamlit as st  
 import pandas as pd  
 import numpy as np  
 import joblib  
 import requests  
-import gdown  
 import bz2  
 import os
 from dotenv import load_dotenv
@@ -223,46 +225,26 @@ from dotenv import load_dotenv
 # 🔹 Load environment variables from .env file
 load_dotenv()
 
-# 🔹 Retrieve API key and Google Drive File ID
+# 🔹 Retrieve API key
 OMDB_API_KEY = os.getenv("OMDB_API_KEY")  
-GDRIVE_SIMILARITY_ID = os.getenv("GDRIVE_SIMILARITY_ID")  # Only needed for large similarity file
 
 # 🔹 Define file paths
 movie_dict_file = "J:/#Recommendation-System/Models/movie_rec_model.joblib"  # Local file
-compressed_similarity_file = "movie_recommendation_model_compressed.joblib.bz2"
-similarity_model_file = "movie_recommendation_model.joblib"  # Extracted similarity matrix
+similarity_model_file = "J:/#Recommendation-System/Models/movie_recommendation_model.joblib"  # Local similarity model
 
-# ✅ Step 1: Download Similarity Model from Google Drive (If Missing)
-def download_similarity_model():
-    """Downloads the similarity model from Google Drive if not found."""
-    if not os.path.exists(compressed_similarity_file):
-        if GDRIVE_SIMILARITY_ID:
-            url = f"https://drive.google.com/uc?id={GDRIVE_SIMILARITY_ID}"
-            st.write(f"⏳ Downloading similarity model from Google Drive...")
-            gdown.download(url, compressed_similarity_file, quiet=False)
-            st.write(f"✅ Similarity model downloaded successfully!")
-        else:
-            st.error(f"❌ Google Drive File ID not found in .env.")
-            st.stop()
+# ✅ Step 1: Load Similarity Model
+try:
+    similarity = joblib.load(similarity_model_file)  # Load locally
+    st.write("✅ Recommendation Model loaded successfully!")
+except Exception as e:
+    st.error(f"❌ Error loading similarity model: {e}")
+    st.stop()
 
-download_similarity_model()  # Run download function if needed
-
-# ✅ Step 2: Decompress Similarity Model (If Needed)
-if not os.path.exists(similarity_model_file):  
-    st.write("⏳ Decompressing similarity model...")
-    with bz2.BZ2File(compressed_similarity_file, "rb") as f:
-        similarity = joblib.load(f)
-    joblib.dump(similarity, similarity_model_file)  # Save decompressed file
-    st.write("✅ Similarity model decompressed successfully!")
-else:
-    st.write("✅ Similarity model already decompressed, loading it directly.")
-    similarity = joblib.load(similarity_model_file)
-
-# ✅ Step 3: Load Movie Dictionary (Local File)
+# ✅ Step 2: Load Movie Dictionary (Local File)
 try:
     movie_dict = joblib.load(movie_dict_file)  # Load locally
     movies = pd.DataFrame(movie_dict)  # Convert to DataFrame
-    st.write("✅ Movie dictionary loaded successfully!")
+    st.write("✅ Movie Dictionary Loaded Successfully!")
 except Exception as e:
     st.error(f"❌ Error loading movie dictionary: {e}")
     st.stop()
