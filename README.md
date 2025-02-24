@@ -27,7 +27,6 @@ RecoHub.AI integrates **content-based filtering** and **vector similarity models
 ## 📌 Project Navigation  
 📂 **RecoHub.AI/**  
  ├── 📁 `images/` *(Screenshots and banners)* 
- 
  ├── 📁 `models/` *(Trained ML models stored here)*  
  ├── 📁 `systems/` *(Processed datasets for movies, music, and podcasts)*  
  ├── 📁 `utils/` *(Main application logic & backend code)*  
