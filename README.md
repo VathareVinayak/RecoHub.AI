@@ -1,4 +1,4 @@
-# RecoHub.AI  
+<h1 align="center">RecoHub.AI</h1>
 
 ![RecoHub.AI Banner](./images/banner.webp)
 
