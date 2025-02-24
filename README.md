@@ -26,11 +26,12 @@ RecoHub.AI integrates **content-based filtering** and **vector similarity models
 
 ## 📌 Project Navigation  
 📂 **RecoHub.AI/**  
+ ├── 📁 `images/` *(Screenshots and banners)* 
  ├── 📁 `models/` *(Trained ML models stored here)*  
- ├── 📁 `data/` *(Processed datasets for movies, music, and podcasts)*  
- ├── 📁 `images/` *(Screenshots and banners)*  
- ├── 📁 `src/` *(Main application logic & backend code)*  
+ ├── 📁 `systems/` *(Processed datasets for movies, music, and podcasts)*  
+ ├── 📁 `utils/` *(Main application logic & backend code)*  
  ├── 📄 `app.py` *(Streamlit UI for recommendations)*  
+ ├── 📄 `requirements.txt` *(required libraries)*  
  ├── 📄 `README.md` *(This file!)*  
 
 ---
@@ -38,9 +39,7 @@ RecoHub.AI integrates **content-based filtering** and **vector similarity models
 ## 📌 Tools & Technologies Used  
 - **Python** (Pandas, NumPy, Seaborn, Matplotlib)  
 - **Machine Learning** (Scikit-Learn, Cosine Similarity, TF-IDF, Nearest Neighbors)  
-- **Flask** (For API integration)  
 - **Streamlit** (For Web UI)  
-- **NeonDB (PostgreSQL)** (For user authentication & data storage)  
 - **Requests API** (For fetching additional media details)  
 
 ---
@@ -48,7 +47,7 @@ RecoHub.AI integrates **content-based filtering** and **vector similarity models
 ## 📌 Setup Instructions  
 1️⃣ Clone the repository:
 ```bash
- git clone https://github.com/yourusername/RecoHub.AI.git
+ git clone https://github.com/VathareVinayak/RecoHub.AI.git
 ```
 
 2️⃣ Navigate to the project directory:
@@ -73,19 +72,19 @@ RecoHub.AI integrates **content-based filtering** and **vector similarity models
 🔹 **Model:** Content-based filtering with TF-IDF & Cosine Similarity  
 🔹 **Dataset:** Movie titles, genres, descriptions, and ratings  
 🔹 **Output Example:**  
-![Movie Recommendation](./images/movie_output.webp)  
+![Movie Recommendation](./images/movie_recommendation.png)  
 
 ### 🎵 Music Recommendation System  
 🔹 **Model:** TF-IDF + Cosine Similarity with music metadata  
 🔹 **Dataset:** Song names, artists, genres, user ratings  
 🔹 **Output Example:**  
-![Music Recommendation](./images/music_output.webp)  
+![Music Recommendation](./images/music_recommendation_system.png)  
 
 ### 🎙️ Podcast Recommendation System  
 🔹 **Model:** Nearest Neighbors with TF-IDF on podcast descriptions  
 🔹 **Dataset:** Podcast titles, descriptions, categories, and languages  
 🔹 **Output Example:**  
-![Podcast Recommendation](./images/podcast_output.webp)  
+![Podcast Recommendation](./images/Podcast_Recommendation_System.png)  
 
 ---
 
