@@ -4,7 +4,7 @@ RecoHub.AI
 
 ## 🎬🎵🎙️ AI-Based Entertainment Recommendation Suite  
 
-### Live Demo: [Click Here](#) 
+### Live Demo: [Click Here](https://recohub-ai.onrender.com/) 
 
 ---
 
