@@ -34,14 +34,10 @@ def get_top_albums():
     return album_music
 
 # Load the pre-trained recommendation model and similarity matrix
-music = pd.read_csv("J:\#Recommendation-System\Systems\Music_Recomendation_System\Music-Recomendation-System.csv")
+music = pd.read_csv("./Systems/Music_Recomendation_System/Music-Recomendation-System.csv")
 
-similarity = np.load("J:\#Recommendation-System\Models\music_recommendation_model.pkl", allow_pickle=True)
+similarity = np.load("./Models/music_recommendation_model.pkl", allow_pickle=True)
 
-"""
-    Recommend similar music tracks based on the given music title.
-    Uses a precomputed similarity matrix.
-"""
 def recommend(music_title):
     try:
         music_index = music[music['Song-Name'] == music_title].index[0]

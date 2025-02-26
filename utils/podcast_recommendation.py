@@ -4,7 +4,7 @@ import pickle
 from collections import Counter
 
 # Load the preprocessed dataset
-podcast_data_path = "J:\#Recommendation-System\Models\cleaned_podcasts.pkl"  # Update the path if needed
+podcast_data_path = "./Models/cleaned_podcasts.pkl"  # Update the path if needed
 podcasts = pickle.load(open(podcast_data_path, "rb"))
 
 # Streamlit UI

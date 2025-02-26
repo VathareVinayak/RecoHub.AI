@@ -34,19 +34,19 @@ st.empty()  # Ensures page content is reset before loading new content
 # Create a container to hold dynamic content
 with st.container():
     if selected == "Movie Recommendation":
-        run_script(r"J:\#Recommendation-System\utils\movie_recommendation.py")
+        run_script(r"./utils/movie_recommendation.py")
 
     elif selected == "Music Recommendation":
-        run_script(r"J:\#Recommendation-System\utils\music_recommendation.py")
+        run_script(r"./utils/music_recommendation.py")
 
     elif selected == "Podcast Recommendation":
-        run_script(r"J:\#Recommendation-System\utils\podcast_recommendation.py")
+        run_script(r"./utils/podcast_recommendation.py")
 
     elif selected == "Home":
         st.title("📢 Welcome to the AI-Based Recommendation")
         st.subheader("An AI-powered recommendation system for entertainment.")
 
-        st.image(r'J:\#Recommendation-System\images\banner.webp', use_container_width=True)
+        st.image(r'./images/banner.webp', use_container_width=True)
 
         # Create tabs for Home, About, and Contact
         tab1, tab2, tab3 = st.tabs(["Home", "About", "Contact"])
